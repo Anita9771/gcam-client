@@ -155,7 +155,9 @@ export default function AdminDashboard() {
         {renderContent()}
         <div className="flex justify-end">
           <Button
-            onClick={() => window.open("/api/reports/download", "_blank")}
+            onClick={() =>
+              window.open("/assets/forms/Ministry_Remittance_Form.pdf", "_blank")
+            }
             className="mt-4 bg-green-600 text-white"
           >
             <DownloadCloud className="w-5 h-5 mr-2" /> Download Report PDF

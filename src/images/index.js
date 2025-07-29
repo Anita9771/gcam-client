@@ -25,3 +25,4 @@ export {default as UsherHead} from './usherL.jpeg';
 export {default as MenLeader} from './menL.jpeg';
 export {default as NigP} from './nigP.jpeg';
 export {default as ChildrenMinistry} from './c-1.jpeg';
+export {default as ChildrenMinistry2} from './children.jpeg';

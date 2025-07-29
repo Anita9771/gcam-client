@@ -1,15 +1,16 @@
 import React from "react";
+import { ChildrenMinistry, ChildrenMinistry2, Together3 } from "../../images";
 
 const Gallery = () => {
   const images = [
     { src: "/images/gallery1.jpg", caption: "Sunday Worship Service" },
     { src: "/images/gallery2.jpg", caption: "Youth Fellowship Gathering" },
-    { src: "/images/gallery3.jpg", caption: "Community Outreach Program" },
+    { src: Together3, caption: "Community Outreach Program" },
     { src: "/images/gallery4.jpg", caption: "Church Anniversary Celebration" },
     { src: "/images/gallery5.jpg", caption: "Worship Team in Action" },
     { src: "/images/gallery6.jpg", caption: "Baptism Ceremony" },
     { src: "/images/gallery7.jpg", caption: "Prayer Session" },
-    { src: "/images/gallery8.jpg", caption: "Children’s Ministry Time" },
+    { src: ChildrenMinistry2, caption: "Children’s Ministry Time" },
   ];
 
   return (

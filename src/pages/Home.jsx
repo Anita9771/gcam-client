@@ -5,7 +5,7 @@ import {Dgo, Mgo, Choir, LibP, Papa, Mama, Asst, Daughter, PapaA, AsstP, Togethe
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [Together3, Dgo, Mgo, Together2, Choir, Daughter, PapaA, AsstP, Together1];
+  const slides = [Dgo, Mgo, Together2, Choir, Together3,  PapaA, AsstP, Together1];
   const headshots = [
     {
       img: Papa,
