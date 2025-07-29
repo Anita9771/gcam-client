@@ -1,19 +1,69 @@
 import React from "react";
+import {ChoirMaster, ChoirMistress, MediaHead, MenLeader, ChildrenMinistry, BuildingCoordinator, ChurchCoordinator, UsherHead, NigP, Choir,} from "../../images"
 
 const departments = [
+  {
+    name: "Nigeria Branch",
+    description:
+      "The head pastor oversees all church activities in Nigeria, providing spiritual leadership, teaching, and guidance to the congregation.",
+    image: NigP,
+    leader: "Pastor ###### #######",
+  },
+  {
+    name: "Men Ministry",
+    description:
+      "Trains and nurtures children in the way of the Lord through engaging Bible stories, worship, and activities.",
+    image: MenLeader,
+    leader: "Deacon Best Tabe Upan",
+  },
   {
     name: "Choir",
     description:
       "The choir leads the congregation in worship through music and prepares the atmosphere for God’s presence. They rehearse weekly and minister during services and special programs.",
-    image: "/images/departments/choir.jpg",
-    leader: "Sister Angela Okoro",
+    image: ChoirMaster,
+    leader: "Deacon Manly Ali",
+  },
+  {
+    name: "Choir",
+    description:
+      "The choir leads the congregation in worship through music and prepares the atmosphere for God’s presence. They rehearse weekly and minister during services and special programs.",
+    image: ChoirMistress,
+    leader: "Deaconess Jennifer Best Upan Tabe",
   },
   {
     name: "Ushering",
     description:
       "The ushering department ensures order during services by welcoming guests, guiding members to their seats, and assisting with offerings and other logistical needs.",
-    image: "/images/departments/ushering.jpg",
-    leader: "Brother Matthew Ibeh",
+    image: UsherHead,
+    leader: "Mrs Jennifer Maduka",
+  },
+  {
+    name: "Media & Technical",
+    description:
+      "Handles sound, projection, live streaming, and media coverage of services. They ensure that all audio-visual needs are met.",
+    image: MediaHead,
+    leader: "Sister Serena Nwaka",
+  },
+  {
+    name: "Church Coordination",
+    description:
+      "Coordinates church activities, events, and logistics. They ensure that all departments work together effectively.",
+    image: ChurchCoordinator,
+    leader: "Deacon Charles Maduka",
+  },
+  {
+    name: "Building Committee",
+    description:
+      "Oversees the maintenance and development of church properties. They ensure that the church facilities are safe and conducive for worship.",
+    image: BuildingCoordinator,
+    leader: "Deacon Effiong Effiye",
+  },
+  {
+    name: "Children Ministry",
+    description:
+      "Trains and nurtures children in the way of the Lord through engaging Bible stories, worship, and activities.",
+    image: ChildrenMinistry,
+    leader: "Sister Nwaka",
   },
   {
     name: "Sanitation",
@@ -23,25 +73,11 @@ const departments = [
     leader: "Sister Blessing Eze",
   },
   {
-    name: "Media & Technical",
-    description:
-      "Handles sound, projection, live streaming, and media coverage of services. They ensure that all audio-visual needs are met.",
-    image: "/images/departments/media.jpg",
-    leader: "Brother Chinedu Nwosu",
-  },
-  {
     name: "Prayer Team",
     description:
       "Intercedes on behalf of the church and its members. They lead weekly prayer meetings and spiritual retreats.",
     image: "/images/departments/prayer.jpg",
     leader: "Pastor Joy Uche",
-  },
-  {
-    name: "Children Ministry",
-    description:
-      "Trains and nurtures children in the way of the Lord through engaging Bible stories, worship, and activities.",
-    image: "/images/departments/children.jpg",
-    leader: "Sister Miriam Udo",
   },
   {
     name: "Follow-up Team",
@@ -93,7 +129,7 @@ const Departments = () => {
             <img
               src={dept.image}
               alt={dept.name}
-              className="w-full h-48 object-cover rounded-md mb-4"
+              className="w-full h-[40rem] object-cover rounded-md mb-4"
             />
             <h3 className="text-2xl font-semibold mb-1 text-[#FFF5E1]">
               {dept.name}

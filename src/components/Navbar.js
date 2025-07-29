@@ -94,23 +94,16 @@ const Navbar = () => {
       name: 'Downloads',
       subItems: [
         { name: 'Picture Gallery', path: '/downloads/gallery' },
-        // { name: 'MP3 Download', path: '/downloads/mp3' },
       ],
     },
     {
       name: 'More Info',
       subItems: [
-        // { name: 'Blog', path: '/more/blog' },
         { name: 'Departments', path: '/more/departments' },
         { name: 'Awakening', path: '/more/awakening' },
         { name: 'Praise', path: '/more/praise' },
       ],
     },
-    // {
-    //   name: 'Life Class',
-    //   path: '/life-class',
-    //   highlight: true,
-    // },
     {
       name: 'Live Stream',
       path: 'https://web.facebook.com/profile.php?id=61576995746428&sk=videos',
@@ -139,6 +132,8 @@ const Navbar = () => {
               GCAM
             </Link>
           </div>
+
+          {/* Desktop Nav */}
           <div className="hidden md:flex space-x-2">
             {navItems.map((item, index) => (
               <div key={index} className="relative">
@@ -173,6 +168,7 @@ const Navbar = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
+                    {/* Desktop dropdown */}
                     <div
                       className={`absolute z-10 mt-2 w-56 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 transform transition duration-300 origin-top-left ${
                         openMainDropdown === index
@@ -243,7 +239,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -263,6 +259,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden mt-2 space-y-1 pb-4">
             {navItems.map((item, index) => (
@@ -280,10 +277,20 @@ const Navbar = () => {
                   <div>
                     <button
                       onClick={() => toggleMainDropdown(index)}
-                      className="w-full text-left px-4 py-2 rounded-md text-sm"
+                      className="w-full text-left px-4 py-2 rounded-md text-sm flex justify-between items-center"
                       style={{ color: '#FFF5E1' }}
                     >
                       {item.name}
+                      <svg
+                        className={`ml-2 h-4 w-4 transition-transform ${
+                          openMainDropdown === index ? 'rotate-180' : ''
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="#FFF5E1"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
                     </button>
                     {openMainDropdown === index && (
                       <div className="ml-4">
@@ -302,10 +309,20 @@ const Navbar = () => {
                             <div key={subIndex} className="ml-4">
                               <button
                                 onClick={() => toggleSubDropdown(`${index}-${subIndex}`)}
-                                className="w-full text-left px-4 py-2 text-sm"
+                                className="w-full text-left px-4 py-2 text-sm flex justify-between items-center"
                                 style={{ color: '#FFF5E1' }}
                               >
                                 {subItem.name}
+                                <svg
+                                  className={`ml-2 h-4 w-4 transition-transform ${
+                                    openSubDropdown === `${index}-${subIndex}` ? 'rotate-90' : ''
+                                  }`}
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="#FFF5E1"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
                               </button>
                               {openSubDropdown === `${index}-${subIndex}` && (
                                 <div className="ml-4">

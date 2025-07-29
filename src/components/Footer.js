@@ -106,15 +106,15 @@ const Footer = () => {
             <ul className="space-y-2 text-[#f5e4ce]">
               <li className="flex justify-between">
                 <span>Sunday Worship:</span>
-                <span>9:30 AM</span>
+                <span>10:00 AM</span>
               </li>
               <li className="flex justify-between">
-                <span>Bible Study:</span>
-                <span>Wed 7:00 PM</span>
+                <span>Mid-week Service:</span>
+                <span>Tue 7:00 PM</span>
               </li>
               <li className="flex justify-between">
-                <span>Prayer Meeting:</span>
-                <span>Fri 6:30 PM</span>
+                <span>Night Vigil <br/> (Every First, Second and Third Friday):</span>
+                <span>Fri 10:00 PM</span>
               </li>
             </ul>
           </div>
