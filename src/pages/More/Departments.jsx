@@ -3,11 +3,11 @@ import {ChoirMaster, ChoirMistress, MediaHead, MenLeader, ChildrenMinistry, Buil
 
 const departments = [
   {
-    name: "Nigeria Branch",
+    name: "Mountain of Prayer Camp City ",
     description:
       "The head pastor oversees all church activities in Nigeria, providing spiritual leadership, teaching, and guidance to the congregation.",
     image: NigP,
-    leader: "Pastor ###### #######",
+    leader: "Pastor Egwuonwu Chukwunulu Christopher",
   },
   {
     name: "Men Ministry",
@@ -63,7 +63,7 @@ const departments = [
     description:
       "Trains and nurtures children in the way of the Lord through engaging Bible stories, worship, and activities.",
     image: ChildrenMinistry,
-    leader: "Sister Nwaka",
+    leader: "Sister Michelle Nwaka",
   },
   {
     name: "Sanitation",

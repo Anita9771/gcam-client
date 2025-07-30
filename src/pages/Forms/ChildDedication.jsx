@@ -53,9 +53,90 @@ const ChildDedication = () => {
       </section>
 
       <div className="max-w-2xl mx-auto bg-[#FFF5E1]/10 p-8 rounded-lg">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Fields... */}
-          {/* (Use same structure as before, omitted for brevity) */}
+      <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-1">Child's Full Name</label>
+            <input
+              type="text"
+              name="childName"
+              value={form.childName}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Child's Date of Birth</label>
+            <input
+              type="date"
+              name="dateOfBirth"
+              value={form.dateOfBirth}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Parents' Names</label>
+            <input
+              type="text"
+              name="parentsNames"
+              value={form.parentsNames}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Phone Number</label>
+            <input
+              type="tel"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Email Address</label>
+            <input
+              type="email"
+              name="contactEmail"
+              value={form.contactEmail}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Dedication Date</label>
+            <input
+              type="date"
+              name="dedicationDate"
+              value={form.dedicationDate}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1">Special Message (optional)</label>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              rows={3}
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B0A8B9]"
+            />
+          </div>
+
           <button
             type="submit"
             className="w-full bg-[#B0A8B9] text-[#800020] font-semibold px-6 py-2 rounded-md hover:bg-[#a095a6] transition-colors"

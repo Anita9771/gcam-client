@@ -21,10 +21,12 @@ const AdminLogin = () => {
     }
 
     try {
-      const { data } = await API.post("/api/auth/login", formData);
+      const { data } = await API.post("/api/auth/admin/login", formData);
       localStorage.setItem("token", data.token);
       setError("");
-      navigate("/admin"); // redirect to dashboard
+      localStorage.setItem("adminToken", data.token);
+        localStorage.setItem("adminData", JSON.stringify(data.admin));
+        navigate("/admin/dashboard"); // ✅ Route to admin dashboard
     } catch (err) {
       setError(err.response?.data?.error || "Invalid credentials");
     }

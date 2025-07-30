@@ -11,7 +11,7 @@ const Testimonies = () => {
     e.preventDefault();
     try {
       await API.post("/api/testimonies", {
-        name,
+        fullName: name || "Anonymous",
         message: testimony,
       });
       setSubmitted(true);

@@ -24,7 +24,7 @@ const Home = () => {
     },
     {
       img: LibP,
-      name: "Pastor Michael Atane",
+      name: "Pastor Kayode Olanitola",
       role: "Head Pastor (Liberia)",
     },
     // Add more if needed

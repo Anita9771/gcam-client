@@ -24,7 +24,7 @@ const tabs = [
   { key: "contacts", label: "Contacts", icon: Mail },
   { key: "partnerships", label: "Partnerships", icon: MessageSquare },
   { key: "pledge", label: "Pledge Posts", icon: FileText },
-  { key: "enquiries", label: "Service Requests", icon: FolderOpen },
+  { key: "enquiries", label: "Enquiries", icon: FolderOpen },
   { key: "subscriptions", label: "Subscriptions", icon: FolderOpen },
   { key: "welfare", label: "Welfare", icon: Users },
   { key: "requests", label: "Requests", icon: FolderOpen },
@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-    window.location.href = "/admin/login";
+    window.location.href = "/join-us/admin-login";
   };
 
   const handleTabClick = (key) => {
@@ -65,21 +65,21 @@ export default function AdminDashboard() {
         case "profiles":
         return <DataTable endpoint="/api/profiles" title="User Profiles" />;
       case "welfare":
-        return <DataTable endpoint="/api/welfare" title="Welfare Requests" />;
-      case "subscriptions":
-        return (
-          <DataTable
-            endpoint="/api/subscribe"
-            title="Newsletter Subscriptions"
-          />
-        );
+        return <DataTable endpoint="/api/welfare" title="Welfare" />;
+      // case "subscriptions":
+      //   return (
+      //     <DataTable
+      //       endpoint="/api/subscribe"
+      //       title="Newsletter Subscriptions"
+      //     />
+      //   );
       case "contacts":
-        return <DataTable endpoint="/api/contact" title="Contact Messages" />;
+        return <DataTable endpoint="/api/contacts" title="Contact Messages" />;
       case "pledge":
         return <DataTable endpoint="/api/pledge" title="Pledge Posts" />;
       case "enquiries":
         return (
-          <DataTable endpoint="/api/enquiries" title="Service Enquiries" />
+          <DataTable endpoint="/api/enquiries" title="Enquiries" />
         );
       case "requests":
         return (
@@ -192,7 +192,7 @@ const DataTable = ({ endpoint, title }) => {
       .finally(() => setLoading(false));
   }, [endpoint, title]);
 
-  const hiddenFields = ['_id', '__v', 'createdAt', 'updatedAt'];
+  const hiddenFields = ['_id', '__v', 'createdAt', 'updatedAt', 'isAdmin', 'image'];
   const tableHeaders = data.length > 0
     ? Object.keys(data[0]).filter((key) => !hiddenFields.includes(key))
     : [];

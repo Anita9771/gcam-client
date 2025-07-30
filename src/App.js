@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import { PrivateRoute, Navbar, Footer, ForgotPassword, ResetPassword } from "./components";
+import { PrivateRoute, Navbar, Footer, ForgotPassword, ResetPassword,PrivateAdminRoute } from "./components";
 import {
   Home,
   Partnership,
@@ -66,7 +66,7 @@ function App() {
                 path="/join-us/register/member"
                 element={<ChurchMember />}
               />
-              <Route path="/join-us/login" element={<Login />} />
+              <Route path="/join-us/login" element={<PrivateRoute><Login /></PrivateRoute>} />
               <Route path="/join-us/admin-login" element={<AdminLogin />} />
               <Route
                 path="/join-us/create-profile"
@@ -103,8 +103,9 @@ function App() {
               <Route path="/more/praise" element={<Praise />} />
 
               {/* Admin */}
-              {/* <Route path="/admin/dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> */}
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/dashboard" element={<PrivateAdminRoute />}>
+  <Route index element={<AdminDashboard />} />
+</Route>{/* <Route path="/admin/dashboard" element={<AdminDashboard />} /> */}
               {/* Special Routes */}
               {/* <Route path="/life-class" element={<LifeClass />} /> */}
               {/* <Route path="/live" element={<LiveStream />} /> */}

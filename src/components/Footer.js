@@ -95,6 +95,7 @@ const Footer = () => {
               <p className="mb-2">6063 Neu-Rum, Austria.</p>
               <p className="mb-2">Phone: (+43) 699 11084419</p>
               <p className="mb-2">gloriouschristambassador@gmail.com</p>
+              <p className="mb-2">austin_nwaka@yahoo.com</p>
             </address>
           </div>
 

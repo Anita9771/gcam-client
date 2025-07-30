@@ -201,7 +201,7 @@ const Login = () => {
             </div>
             <div className="flex justify-between text-sm">
             <Link
-  to={"/forgot-password?email=${encodeURIComponent(formData.email)}"}
+  to={`/forgot-password`}
   className="text-[#FFF5E1] underline hover:text-white"
 >
   Forgot password?

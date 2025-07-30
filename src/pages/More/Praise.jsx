@@ -5,7 +5,7 @@ const Praise = () => {
   return (
     <div className="min-h-screen bg-[#800020] text-[#FFF5E1] pt-24 px-6 pb-16">
       <section className="max-w-5xl mx-auto space-y-8">
-        <h1 className="text-4xl font-bold text-center">Innsbruck City Praise Vision</h1>
+        <h1 className="text-4xl font-bold text-center">Innsbruck City Praise</h1>
 
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Vision Statement</h2>

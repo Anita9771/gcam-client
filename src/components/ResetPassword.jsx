@@ -9,6 +9,8 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,10 +19,11 @@ const ResetPassword = () => {
     }
 
     try {
-      const res = await API.post("/api/profiles/reset-password", {
-        token,
+      await API.post("/api/profiles/reset-password", {
+        email,
         newPassword,
       });
+      
       setMessage("Password reset successful.");
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
@@ -35,6 +38,15 @@ const ResetPassword = () => {
         className="bg-[#FFF5E1]/10 p-8 rounded-lg max-w-md w-full space-y-6"
       >
         <h1 className="text-2xl font-bold text-center">Reset Your Password</h1>
+
+        <input
+    type="email"
+    required
+    placeholder="Your email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="w-full px-4 py-2 rounded-md text-gray-900"
+  />
 
         <input
           type="password"
