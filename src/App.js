@@ -66,7 +66,7 @@ function App() {
                 path="/join-us/register/member"
                 element={<ChurchMember />}
               />
-              <Route path="/join-us/login" element={<PrivateRoute><Login /></PrivateRoute>} />
+              <Route path="/join-us/login" element={<Login />} />
               <Route path="/join-us/admin-login" element={<AdminLogin />} />
               <Route
                 path="/join-us/create-profile"

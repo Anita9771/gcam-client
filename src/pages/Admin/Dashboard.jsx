@@ -25,7 +25,7 @@ const tabs = [
   { key: "partnerships", label: "Partnerships", icon: MessageSquare },
   { key: "pledge", label: "Pledge Posts", icon: FileText },
   { key: "enquiries", label: "Enquiries", icon: FolderOpen },
-  { key: "subscriptions", label: "Subscriptions", icon: FolderOpen },
+  // { key: "subscriptions", label: "Subscriptions", icon: FolderOpen },
   { key: "welfare", label: "Welfare", icon: Users },
   { key: "requests", label: "Requests", icon: FolderOpen },
   { key: "firstTimers", label: "First Timers", icon: Users },
@@ -160,7 +160,7 @@ export default function AdminDashboard() {
             }
             className="mt-4 bg-green-600 text-white"
           >
-            <DownloadCloud className="w-5 h-5 mr-2" /> Download Report PDF
+            <DownloadCloud className="w-5 h-5 mr-2" /> Download Remittance Form
           </Button>
         </div>
       </main>

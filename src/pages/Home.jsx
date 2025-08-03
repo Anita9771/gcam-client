@@ -159,7 +159,7 @@ const Home = () => {
       <img
         src={minister.img}
         alt={minister.name}
-        className="w-80 h-80 object-contain rounded mb-4 hover:shadow-lg transition-transform hover:scale-105 duration-300 ease-in-out"
+        className="w-80 h-80 object-contain rounded mb-4 transition-transform hover:scale-105 duration-300 ease-in-out"
       />
       <h4 className="text-lg font-semibold">{minister.name}</h4>
       <p className="text-sm">{minister.role}</p>
