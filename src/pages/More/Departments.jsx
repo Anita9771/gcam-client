@@ -1,5 +1,20 @@
 import React from "react";
-import {ChoirMaster, ChoirMistress, MediaHead, MenLeader, ChildrenMinistry, BuildingCoordinator, ChurchCoordinator, UsherHead, NigP, Choir,} from "../../images"
+import {
+  ChoirMaster,
+  ChoirMistress,
+  MediaHead,
+  MenLeader,
+  ChildrenMinistry,
+  BuildingCoordinator,
+  ChurchCoordinator,
+  UsherHead,
+  NigP,
+  Choir,
+  RecordsH,
+  TechH,
+  FinancialS,
+  ChildrenH
+} from "../../images";
 
 const departments = [
   {
@@ -17,14 +32,28 @@ const departments = [
     leader: "Deacon Best Tabe Upan",
   },
   {
-    name: "Choir",
+    name: "Records & Documentation (Church Secretary)",
+    description:
+      "Responsible for maintaining church records, including membership, attendance, and event documentation. They ensure that all records are accurate and up-to-date.",
+    image: RecordsH,
+    leader: "Pastor Mrs Betty Atane",
+  },
+  {
+    name: "Financial Department",
+    description:
+      "Manages the church's finances, including budgeting, accounting, and financial reporting. They ensure transparency and accountability in all financial matters.",
+    image: FinancialS,
+    leader: "Deaconess Clementina Ali",
+  },
+  {
+    name: "Choir Master",
     description:
       "The choir leads the congregation in worship through music and prepares the atmosphere for God’s presence. They rehearse weekly and minister during services and special programs.",
     image: ChoirMaster,
     leader: "Deacon Manly Ali",
   },
   {
-    name: "Choir",
+    name: "Choir Mistress",
     description:
       "The choir leads the congregation in worship through music and prepares the atmosphere for God’s presence. They rehearse weekly and minister during services and special programs.",
     image: ChoirMistress,
@@ -38,7 +67,14 @@ const departments = [
     leader: "Mrs Jennifer Maduka",
   },
   {
-    name: "Media & Technical",
+    name: "Media, Sound & Technical",
+    description:
+      "Handles sound, projection, live streaming, and media coverage of services. They ensure that all audio-visual needs are met.",
+    image: TechH,
+    leader: "Brother Joseph Michael",
+  },
+  {
+    name: "Media & Technical Support",
     description:
       "Handles sound, projection, live streaming, and media coverage of services. They ensure that all audio-visual needs are met.",
     image: MediaHead,
@@ -62,51 +98,51 @@ const departments = [
     name: "Children Ministry",
     description:
       "Trains and nurtures children in the way of the Lord through engaging Bible stories, worship, and activities.",
-    image: ChildrenMinistry,
+    image: ChildrenH,
     leader: "Sister Michelle Nwaka",
   },
-  {
-    name: "Sanitation",
-    description:
-      "This department maintains the cleanliness of the church environment before, during, and after services and events.",
-    image: "/images/departments/sanitation.jpg",
-    leader: "Sister Blessing Eze",
-  },
-  {
-    name: "Prayer Team",
-    description:
-      "Intercedes on behalf of the church and its members. They lead weekly prayer meetings and spiritual retreats.",
-    image: "/images/departments/prayer.jpg",
-    leader: "Pastor Joy Uche",
-  },
-  {
-    name: "Follow-up Team",
-    description:
-      "Follows up with first-time visitors, new believers, and members who need care or support.",
-    image: "/images/departments/followup.jpg",
-    leader: "Brother David Akpan",
-  },
-  {
-    name: "Evangelism",
-    description:
-      "Organizes outreach events, soul-winning campaigns, and community evangelism.",
-    image: "/images/departments/evangelism.jpg",
-    leader: "Sister Faith Amadi",
-  },
-  {
-    name: "Welfare",
-    description:
-      "Provides support and assistance to members in need including food, clothing, and shelter aid.",
-    image: "/images/departments/welfare.jpg",
-    leader: "Brother Johnson Obi",
-  },
-  {
-    name: "Protocol & Security",
-    description:
-      "Ensures safety and smooth coordination of special guests and events. Also responsible for order within the premises.",
-    image: "/images/departments/security.jpg",
-    leader: "Brother Emmanuel Ajaero",
-  },
+  // {
+  //   name: "Sanitation",
+  //   description:
+  //     "This department maintains the cleanliness of the church environment before, during, and after services and events.",
+  //   image: "/images/departments/sanitation.jpg",
+  //   leader: "Sister Blessing Eze",
+  // },
+  // {
+  //   name: "Prayer Team",
+  //   description:
+  //     "Intercedes on behalf of the church and its members. They lead weekly prayer meetings and spiritual retreats.",
+  //   image: "/images/departments/prayer.jpg",
+  //   leader: "Pastor Joy Uche",
+  // },
+  // {
+  //   name: "Follow-up Team",
+  //   description:
+  //     "Follows up with first-time visitors, new believers, and members who need care or support.",
+  //   image: "/images/departments/followup.jpg",
+  //   leader: "Brother David Akpan",
+  // },
+  // {
+  //   name: "Evangelism",
+  //   description:
+  //     "Organizes outreach events, soul-winning campaigns, and community evangelism.",
+  //   image: "/images/departments/evangelism.jpg",
+  //   leader: "Sister Faith Amadi",
+  // },
+  // {
+  //   name: "Welfare",
+  //   description:
+  //     "Provides support and assistance to members in need including food, clothing, and shelter aid.",
+  //   image: "/images/departments/welfare.jpg",
+  //   leader: "Brother Johnson Obi",
+  // },
+  // {
+  //   name: "Protocol & Security",
+  //   description:
+  //     "Ensures safety and smooth coordination of special guests and events. Also responsible for order within the premises.",
+  //   image: "/images/departments/security.jpg",
+  //   leader: "Brother Emmanuel Ajaero",
+  // },
 ];
 
 const Departments = () => {

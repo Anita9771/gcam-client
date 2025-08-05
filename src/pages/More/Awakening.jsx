@@ -109,6 +109,13 @@ const Awakening = () => {
           <Link to="/join-us/register/program-attendance" className="bg-[#B0A8B9] text-[#800020] font-semibold mt-16 px-4 py-2 rounded-md hover:bg-[#a296aa] transition">Register Now</Link>
     
           </div>
+          <button
+  onClick={() => window.open("/assets/forms/GCAM_VnM_German.docx", "_blank")}
+  className="italic text-white px-6 py-3 transition hover:underline"
+>
+  Read in German
+</button>
+
         </div>
       </section>
    </div>

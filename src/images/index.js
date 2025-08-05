@@ -26,3 +26,8 @@ export {default as MenLeader} from './menL.jpeg';
 export {default as NigP} from './nigP.jpeg';
 export {default as ChildrenMinistry} from './c-1.jpeg';
 export {default as ChildrenMinistry2} from './children.jpeg';
+export { default as ChildrenH } from './ChildrenH.jpeg';
+export { default as FinancialS } from './FinancialS.jpeg';
+export { default as RecordsH } from './RecordsH.jpeg';
+export { default as TechH } from './TechH.jpeg';
+export { default as Partners1 } from './Partners1.jpeg';

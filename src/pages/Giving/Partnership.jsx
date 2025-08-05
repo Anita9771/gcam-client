@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../../context/api"
+import { Partners1 } from "../../images";
 
 const PartnershipPage = () => {
   const [formData, setFormData] = useState({ name: "", phone: "" });
@@ -29,6 +30,52 @@ const PartnershipPage = () => {
           "Give, and it will be given to you..." – Luke 6:38
         </p>
       </section>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+  <div className="w-full h-64 sm:h-80 md:h-[20rem] relative">
+    <img
+      src={Partners1}
+      alt="Partnership Impact"
+      className="absolute inset-0 w-full h-full object-cover rounded-lg object-top"
+    />
+  </div>
+  <div className="flex flex-col justify-center px-4">
+          <h2 className="text-2xl font-semibold mb-4">Why Partner with Us?</h2>
+          <p className="mb-4 text-[#FFF5E1]/90">
+            Your partnership helps us fulfill the Great Commission—reaching the
+            lost, equipping the saints, and serving our community. Through your
+            support, we're able to spread the gospel across Austria and beyond.
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-[#FFF5E1]/90">
+            <li>Support local and global outreach</li>
+            <li>Fund community welfare programs</li>
+            <li>Enable church expansion and media ministry</li>
+          </ul>
+  </div>
+</div>
+
+
+
+      {/* <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 mb-16">
+        <img
+          src={Partners1}
+          alt="Partnership Impact"
+          className="rounded-lg w-full h-[20rem] object-cover"
+        />
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Why Partner with Us?</h2>
+          <p className="mb-4 text-[#FFF5E1]/90">
+            Your partnership helps us fulfill the Great Commission—reaching the
+            lost, equipping the saints, and serving our community. Through your
+            support, we're able to spread the gospel across Austria and beyond.
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-[#FFF5E1]/90">
+            <li>Support local and global outreach</li>
+            <li>Fund community welfare programs</li>
+            <li>Enable church expansion and media ministry</li>
+          </ul>
+        </div>
+      </div> */}
 
       <div className="bg-[#FFF5E1]/10 p-8 rounded-lg max-w-3xl mx-auto mb-20">
         <h3 className="text-2xl font-bold mb-4 text-center">
@@ -79,26 +126,6 @@ const PartnershipPage = () => {
       </div>
 
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 mb-16">
-        <img
-          src="/images/partnership-impact.jpg"
-          alt="Partnership Impact"
-          className="rounded-lg shadow-lg w-full h-auto"
-        />
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Why Partner with Us?</h2>
-          <p className="mb-4 text-[#FFF5E1]/90">
-            Your partnership helps us fulfill the Great Commission—reaching the
-            lost, equipping the saints, and serving our community. Through your
-            support, we're able to spread the gospel across Austria and beyond.
-          </p>
-          <ul className="list-disc pl-5 space-y-2 text-[#FFF5E1]/90">
-            <li>Support local and global outreach</li>
-            <li>Fund community welfare programs</li>
-            <li>Enable church expansion and media ministry</li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 };
