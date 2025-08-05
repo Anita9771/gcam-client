@@ -1,16 +1,69 @@
 import React from "react";
-import { ChildrenMinistry, ChildrenMinistry2, Together3 } from "../../images";
+import {
+  ChildrenMinistry,
+  ChildrenMinistry2,
+  Together3,
+  Image1,
+  Image2,
+  Image3,
+  Image4,
+  Image5,
+  Image7,
+  Image8,
+  Image9,
+  Image10,
+  Image11,
+  Image6,
+  Image12,
+  Image13,
+  Image14,
+  Image15,
+  Image16,
+  Image17,
+  Image18,
+  Image19,
+  Image20,
+  Image21,
+  Image22,
+  Image23,
+  Image24,
+  Image25,
+  Image26,
+  Image27,
+} from "../../images";
 
 const Gallery = () => {
   const images = [
-    { src: "/images/gallery1.jpg", caption: "Sunday Worship Service" },
-    { src: "/images/gallery2.jpg", caption: "Youth Fellowship Gathering" },
+    { src: ChildrenMinistry, caption: "Youth Fellowship Gathering" },
+    // { src: Image1, caption: "Youth Fellowship Gathering" },
     { src: Together3, caption: "Community Outreach Program" },
-    { src: "/images/gallery4.jpg", caption: "Church Anniversary Celebration" },
-    { src: "/images/gallery5.jpg", caption: "Worship Team in Action" },
-    { src: "/images/gallery6.jpg", caption: "Baptism Ceremony" },
-    { src: "/images/gallery7.jpg", caption: "Prayer Session" },
+    // { src: Image2, caption: "Church Anniversary Celebration" },
+    { src: Image3, caption: "Worship Team in Action" },
+    { src: Image4, caption: "Baptism Ceremony" },
+    { src: Image5, caption: "Prayer Session" },
     { src: ChildrenMinistry2, caption: "Children’s Ministry Time" },
+    { src: Image6, caption: "Community Service Event" },
+    { src: Image7, caption: "Youth Fellowship Gathering" },
+    { src: Image8, caption: "Church Anniversary Celebration" },
+    { src: Image9, caption: "Worship Team in Action" },
+    // { src: Image10, caption: "Baptism Ceremony" },
+    // { src: Image11, caption: "Prayer Session" },
+    // { src: Image12, caption: "Community Service Event" },
+    { src: Image13, caption: "Youth Fellowship Gathering" },
+    { src: Image14, caption: "Church Anniversary Celebration" },
+    { src: Image15, caption: "Worship Team in Action" },
+    { src: Image16, caption: "Baptism Ceremony" },
+    { src: Image17, caption: "Prayer Session" },
+    { src: Image18, caption: "Community Service Event" },
+    { src: Image19, caption: "Youth Fellowship Gathering" },
+    // { src: Image20, caption: "Church Anniversary Celebration" },
+    { src: Image21, caption: "Worship Team in Action" },
+    { src: Image22, caption: "Baptism Ceremony" },
+    { src: Image23, caption: "Prayer Session" },
+    { src: Image24, caption: "Community Service Event" },
+    { src: Image25, caption: "Youth Fellowship Gathering" },
+    { src: Image26, caption: "Church Anniversary Celebration" },
+    { src: Image27, caption: "Worship Team in Action" },
   ];
 
   return (
@@ -36,9 +89,9 @@ const Gallery = () => {
               className="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-300"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-              <p className="text-center text-[#FFF5E1] font-medium text-sm sm:text-base">
+              {/* <p className="text-center text-[#FFF5E1] font-medium text-sm sm:text-base">
                 {item.caption}
-              </p>
+              </p> */}
             </div>
           </div>
         ))}
