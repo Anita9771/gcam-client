@@ -13,10 +13,41 @@ import {
   RecordsH,
   TechH,
   FinancialS,
-  ChildrenH
+  ChildrenH,
+  Mama,
+  PapaP,
+  Mama2,
+  Image6,
+  Mama3,
+  Asst3,
+  Asst2,
+  Image11,
+  Mama4
 } from "../../images";
 
 const departments = [
+
+  {
+    name: "Prayer Team",
+    description:
+      "Intercedes on behalf of the church and its members. They lead weekly prayer meetings and spiritual retreats.",
+    image: PapaP,
+    leader: "Rev Austin Nwaka",
+  },
+  {
+    name: "Follow-up and Counselling Team",
+    description:
+      "Follows up with first-time visitors, new believers, and members who need care or support.",
+    image: Mama3,
+    leader: "Prophetess Blessing Nwaka",
+  },
+  {
+    name: "Sunday School Department",
+    description:
+      "Conducts Sunday School classes for all age groups, teaching biblical principles and fostering spiritual growth.",  
+    image: Asst2,
+    leader: "Pastor Michael Atane",
+  },
   {
     name: "Mountain of Prayer Camp City ",
     description:
@@ -46,7 +77,7 @@ const departments = [
     leader: "Deaconess Clementina Ali",
   },
   {
-    name: "Choir Master",
+    name: "Music Director",
     description:
       "The choir leads the congregation in worship through music and prepares the atmosphere for God’s presence. They rehearse weekly and minister during services and special programs.",
     image: ChoirMaster,
@@ -107,20 +138,6 @@ const departments = [
   //     "This department maintains the cleanliness of the church environment before, during, and after services and events.",
   //   image: "/images/departments/sanitation.jpg",
   //   leader: "Sister Blessing Eze",
-  // },
-  // {
-  //   name: "Prayer Team",
-  //   description:
-  //     "Intercedes on behalf of the church and its members. They lead weekly prayer meetings and spiritual retreats.",
-  //   image: "/images/departments/prayer.jpg",
-  //   leader: "Pastor Joy Uche",
-  // },
-  // {
-  //   name: "Follow-up Team",
-  //   description:
-  //     "Follows up with first-time visitors, new believers, and members who need care or support.",
-  //   image: "/images/departments/followup.jpg",
-  //   leader: "Brother David Akpan",
   // },
   // {
   //   name: "Evangelism",
