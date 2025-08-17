@@ -7,7 +7,7 @@ import {
   ChildrenMinistry,
   BuildingCoordinator,
   ChurchCoordinator,
-  UsherHead,
+  UsherHN,
   NigP,
   Choir,
   RecordsH,
@@ -22,7 +22,8 @@ import {
   Asst3,
   Asst2,
   Image11,
-  Mama4
+  MamaN,
+  BennoW
 } from "../../images";
 
 const departments = [
@@ -38,7 +39,7 @@ const departments = [
     name: "Follow-up and Counselling Team",
     description:
       "Follows up with first-time visitors, new believers, and members who need care or support.",
-    image: Mama3,
+    image: MamaN,
     leader: "Prophetess Blessing Nwaka",
   },
   {
@@ -70,6 +71,13 @@ const departments = [
     leader: "Pastor Mrs Betty Atane",
   },
   {
+      name: "Protocol & Security",
+      description:
+        "Ensures safety and smooth coordination of special guests and events. Also responsible for order within the premises.",
+      image: BennoW,
+      leader: "ELder Benno Witting",
+    },
+  {
     name: "Financial Department",
     description:
       "Manages the church's finances, including budgeting, accounting, and financial reporting. They ensure transparency and accountability in all financial matters.",
@@ -94,7 +102,7 @@ const departments = [
     name: "Ushering",
     description:
       "The ushering department ensures order during services by welcoming guests, guiding members to their seats, and assisting with offerings and other logistical needs.",
-    image: UsherHead,
+    image: UsherHN,
     leader: "Mrs Jennifer Maduka",
   },
   {
@@ -153,13 +161,7 @@ const departments = [
   //   image: "/images/departments/welfare.jpg",
   //   leader: "Brother Johnson Obi",
   // },
-  // {
-  //   name: "Protocol & Security",
-  //   description:
-  //     "Ensures safety and smooth coordination of special guests and events. Also responsible for order within the premises.",
-  //   image: "/images/departments/security.jpg",
-  //   leader: "Brother Emmanuel Ajaero",
-  // },
+  // 
 ];
 
 const Departments = () => {

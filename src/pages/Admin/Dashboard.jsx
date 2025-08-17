@@ -62,7 +62,7 @@ export default function AdminDashboard() {
         return (
           <DataTable endpoint="/api/church-member" title="Church Members" />
         );
-        case "profiles":
+      case "profiles":
         return <DataTable endpoint="/api/profiles" title="User Profiles" />;
       case "welfare":
         return <DataTable endpoint="/api/welfare" title="Welfare" />;
@@ -78,15 +78,15 @@ export default function AdminDashboard() {
       case "pledge":
         return <DataTable endpoint="/api/pledge" title="Pledge Posts" />;
       case "enquiries":
-        return (
-          <DataTable endpoint="/api/enquiries" title="Enquiries" />
-        );
+        return <DataTable endpoint="/api/enquiries" title="Enquiries" />;
       case "requests":
         return (
           <DataTable endpoint="/api/requests" title="Prayer/General Requests" />
         );
       case "naming":
-        return <DataTable endpoint="/api/baby-naming" title="Naming Submissions" />;
+        return (
+          <DataTable endpoint="/api/baby-naming" title="Naming Submissions" />
+        );
       case "dedication":
         return (
           <DataTable
@@ -100,11 +100,17 @@ export default function AdminDashboard() {
         );
       case "testimonies":
         return <DataTable endpoint="/api/testimonies" title="Testimonies" />;
-      
+
       case "partnerships":
         return <DataTable endpoint="/api/partnership" title="Partnerships" />;
-        case "programAttendance":
-          return <DataTable endpoint="/api/program-attendance" title="Program Attendance" />;
+      case "programAttendance":
+        return (
+          <DataTable
+            endpoint="/api/program-attendance"
+            title="Program Attendance"
+            splitByProgram
+          />
+        );
       default:
         return <PlaceholderCard title="Coming Soon" />;
     }
@@ -156,7 +162,10 @@ export default function AdminDashboard() {
         <div className="flex justify-end">
           <Button
             onClick={() =>
-              window.open("/assets/forms/Ministry_Remittance_Form.pdf", "_blank")
+              window.open(
+                "/assets/forms/Ministry_Remittance_Form.pdf",
+                "_blank"
+              )
             }
             className="mt-4 bg-green-600 text-white"
           >
@@ -181,29 +190,91 @@ const PlaceholderCard = ({ title, children }) => (
   </div>
 );
 
-const DataTable = ({ endpoint, title }) => {
+const DataTable = ({ endpoint, title, splitByProgram = false }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [programFilter, setProgramFilter] = useState("ALL"); // ALL | PRAISE | AWAKENING | UNKNOWN
 
   useEffect(() => {
+    setLoading(true);
     API.get(endpoint)
-      .then((res) => setData(res.data))
+      .then((res) => setData(Array.isArray(res.data) ? res.data : []))
       .catch((err) => console.error(`Error loading ${title}:`, err))
       .finally(() => setLoading(false));
   }, [endpoint, title]);
 
+  // Fields we don't show
   const hiddenFields = ['_id', '__v', 'createdAt', 'updatedAt', 'isAdmin', 'image'];
-  const tableHeaders = data.length > 0
-    ? Object.keys(data[0]).filter((key) => !hiddenFields.includes(key))
-    : [];
 
-  return (
-    <div>
-      <div className="w-max overflow-x-hidden">
-        <h1 className="text-xl font-semibold mb-4">{title}</h1>
-        {loading ? (
-          <p>Loading...</p>
-        ) : data.length > 0 ? (
+  // --- NEW: alias map (index-based) -----------------------------------------
+  // Index 0 => PRAISE, Index 1 => AWAKENING
+  const PROGRAM_ALIASES = [
+    // PRAISE aliases (English + German + common variations)
+    [
+      "innsbruck city praise",
+      "city praise innsbruck",
+      "innsbruck stadt lobpreis",
+      "stadt lobpreis innsbruck",
+      "lobpreis innsbruck",
+      "elogios à cidade de innsbruck",
+    ],
+    // AWAKENING aliases
+    [
+      "innsbruck spiritual awakening",
+      "spiritual awakening innsbruck",
+      "innsbruck geistliches erwachen",
+      "geistliches erwachen innsbruck",
+      "geistliches erwachen",
+      "despertar espiritual de innsbruck",
+      "innsbruck spirituelles erwachen.",
+      "innsbruck spirituelles erwachen",
+    ],
+  ];
+
+  const CANON = { 0: "PRAISE", 1: "AWAKENING" };
+  const PRAISE_LABEL = "Innsbruck City Praise";
+  const AWAKENING_LABEL = "Innsbruck Spiritual Awakening";
+
+  // Robust normalizer (trim, collapse spaces, lowercase)
+  const normalize = (s) =>
+    (s ?? "")
+      .toString()
+      .normalize("NFKD") // handles diacritics
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+  // Map any translated/synonym label to canonical bucket via index-based aliases
+  const canonicalizeProgram = (programRaw) => {
+    const n = normalize(programRaw);
+    const idx = PROGRAM_ALIASES.findIndex((aliasList) =>
+      aliasList.some((a) => a === n)
+    );
+    if (idx === 0) return "PRAISE";
+    if (idx === 1) return "AWAKENING";
+    return "UNKNOWN";
+  };
+  // --------------------------------------------------------------------------
+
+  // Utility: get visible headers for a given dataset
+  const getHeaders = (rows) => {
+    if (!rows || rows.length === 0) return [];
+    return Object.keys(rows[0]).filter((key) => !hiddenFields.includes(key));
+  };
+
+  // Utility: render a single table for a dataset
+  const renderTable = (rows, tableTitle) => {
+    const tableHeaders = getHeaders(rows.length ? rows : data);
+
+    if (loading) return <p>Loading...</p>;
+    if (!rows || rows.length === 0) return <p>No data found.</p>;
+
+    return (
+      <div className="mb-8">
+        <h2 className="text-lg font-semibold mb-3">
+          {tableTitle} <span className="text-sm text-gray-400">({rows.length})</span>
+        </h2>
+        <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
@@ -218,22 +289,84 @@ const DataTable = ({ endpoint, title }) => {
               </tr>
             </thead>
             <tbody className="text-white">
-              {data.map((row, idx) => (
+              {rows.map((row, idx) => (
                 <tr key={idx}>
                   {tableHeaders.map((key) => (
                     <td key={key} className="border px-4 py-2">
-                      {row[key]}
+                      {row[key] !== null && row[key] !== undefined ? String(row[key]) : ""}
                     </td>
                   ))}
                 </tr>
               ))}
             </tbody>
           </table>
-        ) : (
-          <p>No data found.</p>
-        )}
+        </div>
       </div>
+    );
+  };
+
+  // Default single table (for other endpoints)
+  if (!splitByProgram) {
+    return (
+      <div>
+        <div className="w-max overflow-x-hidden">
+          <h1 className="text-xl font-semibold mb-4">{title}</h1>
+          {renderTable(data, title)}
+        </div>
+      </div>
+    );
+  }
+
+  // Split view (for /api/program-attendance) using canonical buckets
+  const praiseRows = data.filter((r) => canonicalizeProgram(r?.program) === "PRAISE");
+  const awakeningRows = data.filter((r) => canonicalizeProgram(r?.program) === "AWAKENING");
+  const unknownRows = data.filter((r) => canonicalizeProgram(r?.program) === "UNKNOWN");
+
+  const counts = {
+    PRAISE: praiseRows.length,
+    AWAKENING: awakeningRows.length,
+    UNKNOWN: unknownRows.length,
+    ALL: data.length,
+  };
+
+  const showPraise = programFilter === "ALL" || programFilter === "PRAISE";
+  const showAwakening = programFilter === "ALL" || programFilter === "AWAKENING";
+  const showUnknown = programFilter === "ALL" || programFilter === "UNKNOWN";
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4 gap-4">
+        <h1 className="text-xl font-semibold">{title}</h1>
+
+        {/* Program Filter (with live counts) */}
+        <div className="flex items-center gap-2">
+          <label htmlFor="programFilter" className="text-sm text-gray-400">
+            Filter:
+          </label>
+          <select
+            id="programFilter"
+            value={programFilter}
+            onChange={(e) => setProgramFilter(e.target.value)}
+            className="px-3 py-2 rounded-md border border-gray-300 text-black"
+          >
+            <option value="ALL">All Programs ({counts.ALL})</option>
+            <option value="PRAISE">{PRAISE_LABEL} ({counts.PRAISE})</option>
+            <option value="AWAKENING">{AWAKENING_LABEL} ({counts.AWAKENING})</option>
+            <option value="UNKNOWN">Other / Unknown ({counts.UNKNOWN})</option>
+          </select>
+        </div>
+      </div>
+
+      <div className={` ${programFilter === "ALL" ? "xl:grid-cols-2" : ""}`}>
+        {showPraise && renderTable(praiseRows, PRAISE_LABEL)}
+
+      </div>
+      {showAwakening && renderTable(awakeningRows, AWAKENING_LABEL)}
+
+      {showUnknown && renderTable(unknownRows, "Other / Unknown Program")}
     </div>
   );
 };
+
+
 

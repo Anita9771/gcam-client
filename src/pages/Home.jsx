@@ -18,6 +18,8 @@ import {
   Papa2,
   Mama2,
   Asst3,
+  RecordsHN,
+  NigPN
 } from "../images";
 
 const Home = () => {
@@ -49,9 +51,19 @@ const Home = () => {
       role: "Assistant Pastor",
     },
     {
+      img: RecordsHN,
+      name: "Pastor Mrs Betty Atane",
+      role: "Asst Mama",
+    },
+    {
       img: LibP,
       name: "Pastor Kayode Olanitola",
       role: "Head Pastor (Liberia)",
+    },
+    {
+      img: NigPN,
+      name: "Pastor Egwuonwu Chukwunulu Christopher",
+      role: "Head Pastor (Nigeria)",
     },
     // Add more if needed
   ];
@@ -208,7 +220,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Testimonies</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-6">
-            {["Jane", "Paul", "Mercy"].map((name, i) => (
+            {[ "Deacon Charles Maduka", "Deaconess Jennifer Tabe Upan", "Deacon Manly Ali"].map((name, i) => (
               <div
                 key={i}
                 className="bg-[#FFF5E1] text-[#800020] p-6 rounded-lg shadow"
@@ -216,13 +228,13 @@ const Home = () => {
                 <p>
                   {
                     [
-                      `“God restored my marriage...”`,
-                      `“I got healed during...”`,
-                      `“Through the teachings...”`,
+                      `“God's faithfulness shown in my life”`,
+                      `“I am thanking God for the life of my son”`,
+                      `“Court case received God's intervention”`,
                     ][i]
                   }
                 </p>
-                <p className="mt-2 font-semibold">— Sister {name}</p>
+                <p className="mt-2 font-semibold">— {name}</p>
               </div>
             ))}
           </div>
