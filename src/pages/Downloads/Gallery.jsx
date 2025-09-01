@@ -33,6 +33,11 @@ import {
   Image28,
   Image29,
   Image30,
+  Woman1,
+  Man1,
+  Church1,
+  Church2,
+  Church3,
 } from "../../images";
 
 const Gallery = () => {
@@ -70,6 +75,11 @@ const Gallery = () => {
     { src: Image28, caption: "Baptism Ceremony" },
     { src: Image29, caption: "Prayer Session" },
     { src: Image30, caption: "Community Service Event" },
+    { src: Woman1, caption: "Church Ministration Ongoing" },
+    { src: Church1, caption: "Prayer time" },
+    { src: Church2, caption: "Prayer time" },
+    { src: Man1, caption: "Church Ministration Ongoing" },
+    { src: Church3, caption: "Prayer time" },
   ];
 
   return (

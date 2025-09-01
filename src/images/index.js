@@ -70,3 +70,8 @@ export { default as PapaP } from './papa2.jpeg';
 export { default as MamaN } from './mama_new.jpeg';
 export { default as UsherHN } from './usher_new.jpeg';
 export { default as BennoW } from './benno.jpeg';
+export { default as Church1 } from './Church1.jpeg';
+export { default as Church2 } from './Church2.jpeg';
+export { default as Church3 } from './church3.jpeg';
+export { default as Woman1 } from './Woman1.jpeg';
+export { default as Man1 } from './Man1.jpeg';
