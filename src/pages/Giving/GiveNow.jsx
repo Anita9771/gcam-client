@@ -55,13 +55,13 @@ const GiveNow = () => {
         </address>
       </div>
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <img
           src="/images/give-now.jpg"
           alt="Giving Heart"
           className="mx-auto rounded-lg shadow-lg w-full max-w-xl"
         />
-      </div>
+      </div> */}
     </div>
   );
 };

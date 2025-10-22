@@ -13,7 +13,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { Card, CardContent, Button } from "../../components";
+import { Button } from "../../components";
 import API from "../../context/api";
 
 const tabs = [
@@ -194,6 +194,9 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [programFilter, setProgramFilter] = useState("ALL"); // ALL | PRAISE | AWAKENING | UNKNOWN
+  const [showDuplicates, setShowDuplicates] = useState(false);
+  const [deduplicatedData, setDeduplicatedData] = useState([]);
+  const [showDuplicateGroups, setShowDuplicateGroups] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -203,8 +206,163 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
       .finally(() => setLoading(false));
   }, [endpoint, title]);
 
+  // Deduplication logic
+  const deduplicateData = (rawData) => {
+    if (!rawData || rawData?.length === 0) return [];
+
+    // Create a map to track duplicates
+    const duplicateMap = new Map();
+    const duplicates = [];
+    const unique = [];
+
+    rawData.forEach((item, index) => {
+      // Create a unique key based on email, phone, and name fields
+      const email = (item.email || item.contactEmail || "")
+        .toLowerCase()
+        .trim();
+      const phone = (item.phone || "").replace(/\D/g, ""); // Remove non-digits
+      const name = (
+        item.fullName ||
+        item.name ||
+        item.childName ||
+        item.partner1Name ||
+        ""
+      )
+        .toLowerCase()
+        .trim();
+
+      // For couples, also check partner2Name
+      const partner2Name = (item.partner2Name || "").toLowerCase().trim();
+
+      // Create composite key for deduplication
+      let key = `${email}-${phone}-${name}`;
+      if (partner2Name) {
+        key += `-${partner2Name}`;
+      }
+
+      if (key === "--" || key === "---") {
+        // Skip items with no identifying information
+        unique.push({ ...item, _isDuplicate: false, _duplicateGroup: null });
+        return;
+      }
+
+      if (duplicateMap.has(key)) {
+        // This is a duplicate
+        const duplicateGroup = duplicateMap.get(key);
+        duplicateGroup.push({
+          ...item,
+          _isDuplicate: true,
+          _duplicateGroup: key,
+          _originalIndex: index,
+        });
+        duplicates.push({
+          ...item,
+          _isDuplicate: true,
+          _duplicateGroup: key,
+          _originalIndex: index,
+        });
+      } else {
+        // First occurrence - mark as original
+        duplicateMap.set(key, [
+          {
+            ...item,
+            _isDuplicate: false,
+            _duplicateGroup: key,
+            _originalIndex: index,
+          },
+        ]);
+        unique.push({
+          ...item,
+          _isDuplicate: false,
+          _duplicateGroup: key,
+          _originalIndex: index,
+        });
+      }
+    });
+
+    return { unique, duplicates, duplicateMap };
+  };
+
+  // Update deduplicated data when raw data changes
+  useEffect(() => {
+    const { unique } = deduplicateData(data);
+    setDeduplicatedData(unique);
+  }, [data]);
+
+  // Render duplicate groups for management
+  const renderDuplicateGroups = (duplicateMap) => {
+    if (!duplicateMap || duplicateMap.size === 0) return null;
+
+    return (
+      <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+        <h3 className="text-lg font-semibold mb-3 text-yellow-800 dark:text-yellow-200">
+          Duplicate Groups ({duplicateMap.size})
+        </h3>
+        <div className="space-y-3">
+          {Array.from(duplicateMap.entries()).map(([key, group]) => (
+            <div
+              key={key}
+              className="p-3 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700"
+            >
+              <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                Group ID: {key.substring(0, 20)}...
+              </div>
+              <div className="space-y-2">
+                {group.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-2 rounded text-sm ${
+                      item._isDuplicate
+                        ? "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800"
+                        : "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span
+                        className={`font-semibold ${
+                          item._isDuplicate
+                            ? "text-red-700 dark:text-red-300"
+                            : "text-green-700 dark:text-green-300"
+                        }`}
+                      >
+                        {item._isDuplicate ? "DUPLICATE" : "ORIGINAL"}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {item.createdAt
+                          ? new Date(item.createdAt).toLocaleDateString()
+                          : "No date"}
+                      </span>
+                    </div>
+                    <div className="mt-1 text-gray-700 dark:text-gray-300">
+                      {item.fullName ||
+                        item.name ||
+                        item.childName ||
+                        item.partner1Name}
+                      {item.partner2Name && ` & ${item.partner2Name}`}
+                      {item.email && ` (${item.email})`}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   // Fields we don't show
-  const hiddenFields = ['_id', '__v', 'createdAt', 'updatedAt', 'isAdmin', 'image'];
+  const hiddenFields = [
+    "_id",
+    "__v",
+    "createdAt",
+    "updatedAt",
+    "isAdmin",
+    "image",
+    "_isDuplicate",
+    "_duplicateGroup",
+    "_originalIndex",
+  ];
 
   // --- NEW: alias map (index-based) -----------------------------------------
   // Index 0 => PRAISE, Index 1 => AWAKENING
@@ -231,7 +389,6 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
     ],
   ];
 
-  const CANON = { 0: "PRAISE", 1: "AWAKENING" };
   const PRAISE_LABEL = "Innsbruck City Praise";
   const AWAKENING_LABEL = "Innsbruck Spiritual Awakening";
 
@@ -258,26 +415,30 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
 
   // Utility: get visible headers for a given dataset
   const getHeaders = (rows) => {
-    if (!rows || rows.length === 0) return [];
-    return Object.keys(rows[0]).filter((key) => !hiddenFields.includes(key));
+    if (!rows || rows?.length === 0) return [];
+    return Object.keys(rows[0])?.filter((key) => !hiddenFields.includes(key));
   };
 
   // Utility: render a single table for a dataset
   const renderTable = (rows, tableTitle) => {
-    const tableHeaders = getHeaders(rows.length ? rows : data);
+    const tableHeaders = getHeaders(rows?.length ? rows : data);
 
     if (loading) return <p>Loading...</p>;
-    if (!rows || rows.length === 0) return <p>No data found.</p>;
+    if (!rows || rows?.length === 0) return <p>No data found.</p>;
 
     return (
       <div className="mb-8">
         <h2 className="text-lg font-semibold mb-3">
-          {tableTitle} <span className="text-sm text-gray-400">({rows.length})</span>
+          {tableTitle}{" "}
+          <span className="text-sm text-gray-400">({rows?.length})</span>
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
+                <th className="border px-4 py-2 text-center text-black">
+                  Status
+                </th>
                 {tableHeaders.map((key) => (
                   <th
                     key={key}
@@ -290,10 +451,28 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
             </thead>
             <tbody className="text-white">
               {rows.map((row, idx) => (
-                <tr key={idx}>
+                <tr
+                  key={idx}
+                  className={
+                    row._isDuplicate ? "bg-red-100 dark:bg-red-900/20" : ""
+                  }
+                >
+                  <td className="border px-4 py-2 text-center">
+                    {row._isDuplicate ? (
+                      <span className="text-red-600 font-semibold text-xs">
+                        DUPLICATE
+                      </span>
+                    ) : (
+                      <span className="text-green-600 font-semibold text-xs">
+                        UNIQUE
+                      </span>
+                    )}
+                  </td>
                   {tableHeaders.map((key) => (
                     <td key={key} className="border px-4 py-2">
-                      {row[key] !== null && row[key] !== undefined ? String(row[key]) : ""}
+                      {row[key] !== null && row[key] !== undefined
+                        ? String(row[key])
+                        : ""}
                     </td>
                   ))}
                 </tr>
@@ -307,30 +486,98 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
 
   // Default single table (for other endpoints)
   if (!splitByProgram) {
+    const { unique, duplicates, duplicateMap } = deduplicateData(data);
+    const displayData = showDuplicates ? data : deduplicatedData;
+    const duplicateCount = duplicates?.length;
+    const uniqueCount = unique?.length;
+
     return (
       <div>
         <div className="w-max overflow-x-hidden">
-          <h1 className="text-xl font-semibold mb-4">{title}</h1>
-          {renderTable(data, title)}
+          <div className="flex items-center justify-between mb-4 gap-4">
+            <h1 className="text-xl font-semibold">{title}</h1>
+
+            {/* Duplicate Controls */}
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-green-600 font-semibold">
+                  {uniqueCount} Unique
+                </span>
+                {duplicateCount > 0 && (
+                  <span className="ml-2 text-red-600 font-semibold">
+                    {duplicateCount} Duplicates
+                  </span>
+                )}
+              </div>
+
+              {duplicateCount > 0 && (
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm text-gray-600 dark:text-gray-400">
+                      Show duplicates:
+                    </label>
+                    <input
+                      type="checkbox"
+                      checked={showDuplicates}
+                      onChange={(e) => setShowDuplicates(e.target.checked)}
+                      className="rounded border-gray-300"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm text-gray-600 dark:text-gray-400">
+                      Manage groups:
+                    </label>
+                    <input
+                      type="checkbox"
+                      checked={showDuplicateGroups}
+                      onChange={(e) => setShowDuplicateGroups(e.target.checked)}
+                      className="rounded border-gray-300"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {showDuplicateGroups && renderDuplicateGroups(duplicateMap)}
+          {renderTable(displayData, title)}
         </div>
       </div>
     );
   }
 
   // Split view (for /api/program-attendance) using canonical buckets
-  const praiseRows = data.filter((r) => canonicalizeProgram(r?.program) === "PRAISE");
-  const awakeningRows = data.filter((r) => canonicalizeProgram(r?.program) === "AWAKENING");
-  const unknownRows = data.filter((r) => canonicalizeProgram(r?.program) === "UNKNOWN");
+  const {
+    unique: allUnique,
+    duplicates: allDuplicates,
+    duplicateMap: allDuplicateMap,
+  } = deduplicateData(data);
+  const displayData = showDuplicates ? data : allUnique;
+
+  const praiseRows = displayData?.filter(
+    (r) => canonicalizeProgram(r?.program) === "PRAISE"
+  );
+  const awakeningRows = displayData?.filter(
+    (r) => canonicalizeProgram(r?.program) === "AWAKENING"
+  );
+  const unknownRows = displayData?.filter(
+    (r) => canonicalizeProgram(r?.program) === "UNKNOWN"
+  );
 
   const counts = {
-    PRAISE: praiseRows.length,
-    AWAKENING: awakeningRows.length,
-    UNKNOWN: unknownRows.length,
-    ALL: data.length,
+    PRAISE: praiseRows?.length,
+    AWAKENING: awakeningRows?.length,
+    UNKNOWN: unknownRows?.length,
+    ALL: displayData?.length,
   };
 
+  const duplicateCount = allDuplicates?.length;
+  const uniqueCount = allUnique?.length;
+
   const showPraise = programFilter === "ALL" || programFilter === "PRAISE";
-  const showAwakening = programFilter === "ALL" || programFilter === "AWAKENING";
+  const showAwakening =
+    programFilter === "ALL" || programFilter === "AWAKENING";
   const showUnknown = programFilter === "ALL" || programFilter === "UNKNOWN";
 
   return (
@@ -338,28 +585,79 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
       <div className="flex items-center justify-between mb-4 gap-4">
         <h1 className="text-xl font-semibold">{title}</h1>
 
-        {/* Program Filter (with live counts) */}
-        <div className="flex items-center gap-2">
-          <label htmlFor="programFilter" className="text-sm text-gray-400">
-            Filter:
-          </label>
-          <select
-            id="programFilter"
-            value={programFilter}
-            onChange={(e) => setProgramFilter(e.target.value)}
-            className="px-3 py-2 rounded-md border border-gray-300 text-black"
-          >
-            <option value="ALL">All Programs ({counts.ALL})</option>
-            <option value="PRAISE">{PRAISE_LABEL} ({counts.PRAISE})</option>
-            <option value="AWAKENING">{AWAKENING_LABEL} ({counts.AWAKENING})</option>
-            <option value="UNKNOWN">Other / Unknown ({counts.UNKNOWN})</option>
-          </select>
+        <div className="flex items-center gap-4">
+          {/* Duplicate Controls */}
+          <div className="flex items-center gap-2">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-green-600 font-semibold">
+                {uniqueCount} Unique
+              </span>
+              {duplicateCount > 0 && (
+                <span className="ml-2 text-red-600 font-semibold">
+                  {duplicateCount} Duplicates
+                </span>
+              )}
+            </div>
+
+            {duplicateCount > 0 && (
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-gray-600 dark:text-gray-400">
+                    Show duplicates:
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={showDuplicates}
+                    onChange={(e) => setShowDuplicates(e.target.checked)}
+                    className="rounded border-gray-300"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-gray-600 dark:text-gray-400">
+                    Manage groups:
+                  </label>
+                  <input
+                    type="checkbox"
+                    checked={showDuplicateGroups}
+                    onChange={(e) => setShowDuplicateGroups(e.target.checked)}
+                    className="rounded border-gray-300"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Program Filter (with live counts) */}
+          <div className="flex items-center gap-2">
+            <label htmlFor="programFilter" className="text-sm text-gray-400">
+              Filter:
+            </label>
+            <select
+              id="programFilter"
+              value={programFilter}
+              onChange={(e) => setProgramFilter(e.target.value)}
+              className="px-3 py-2 rounded-md border border-gray-300 text-black"
+            >
+              <option value="ALL">All Programs ({counts.ALL})</option>
+              <option value="PRAISE">
+                {PRAISE_LABEL} ({counts.PRAISE})
+              </option>
+              <option value="AWAKENING">
+                {AWAKENING_LABEL} ({counts.AWAKENING})
+              </option>
+              <option value="UNKNOWN">
+                Other / Unknown ({counts.UNKNOWN})
+              </option>
+            </select>
+          </div>
         </div>
       </div>
 
+      {showDuplicateGroups && renderDuplicateGroups(allDuplicateMap)}
+
       <div className={` ${programFilter === "ALL" ? "xl:grid-cols-2" : ""}`}>
         {showPraise && renderTable(praiseRows, PRAISE_LABEL)}
-
       </div>
       {showAwakening && renderTable(awakeningRows, AWAKENING_LABEL)}
 
@@ -367,6 +665,3 @@ const DataTable = ({ endpoint, title, splitByProgram = false }) => {
     </div>
   );
 };
-
-
-

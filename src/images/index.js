@@ -75,3 +75,5 @@ export { default as Church2 } from './Church2.jpeg';
 export { default as Church3 } from './church3.jpeg';
 export { default as Woman1 } from './Woman1.jpeg';
 export { default as Man1 } from './Man1.jpeg';
+export { default as PraiseImg } from './praise.jpeg';
+export { default as AwakenImg } from './awaken.jpeg';

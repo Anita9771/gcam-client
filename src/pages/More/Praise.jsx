@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {PraiseImg} from "../../images";
 
 const Praise = () => {
   return (
     <div className="min-h-screen bg-[#800020] text-[#FFF5E1] pt-24 px-6 pb-16">
+    
       <section className="max-w-5xl mx-auto space-y-8">
         <h1 className="text-4xl font-bold text-center">Innsbruck City Praise</h1>
-
+        <div className="text-center">
+        <img
+          src={PraiseImg}
+          alt="Praise img"
+          className="mx-auto rounded-lg shadow-lg w-full max-w-xl"
+        />
+      </div>
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Vision Statement</h2>
           <p>

@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Awaken, AwakenImg} from "../../images"
 
 const Awakening = () => {
   return (
     <div className="min-h-screen bg-[#800020] text-[#FFF5E1] pt-24 px-6 pb-16">
       <section className="max-w-5xl mx-auto space-y-8">
         <h1 className="text-4xl font-bold text-center">Innsbruck Spiritual Awakening</h1>
-
+        <div className="text-center">
+        <img
+          src={AwakenImg}
+          alt="Awaken img"
+          className="mx-auto rounded-lg shadow-lg w-full max-w-xl"
+        />
+        </div>
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Vision Statement</h2>
           <p>
