@@ -88,24 +88,77 @@ const Home = () => {
   ];
 
   const announcements = [
+    // {
+    //   title: "Fasting and Prayer",
+    //   excerpt:
+    //     "Join us for our 40 days fasting and prayer sessions from 1st January to 9th February. Let's seek God's face together.",
+    // },
     {
-      title: "Upcoming Night of Praise",
+      title: "Power Packed Revival",
       excerpt:
-        "Join us on the 26th to 28th of October for a powerful night of worship and praise.",
-      link: "/more/blog/night-of-worship",
+        "Experience a powerful revival with us from the 13th to 15th of February. Let's encounter God together.",
     },
     {
-      title: "Let's Go Fishing 2025",
+      title: "Children's Anniversary",
       excerpt:
-        "Our annual evangelism will hold every Saturday in November. Join us as we spread the gospel.",
-      link: "/more/blog/youth-conference",
+        "Celebrate with us as we mark our children's anniversary on the 15th of March. Fun, fellowship and God's presence await.",
     },
     {
-      title: "Thanksgiving and Love Feast",
+      title:" Easter Feast Celebration",
       excerpt:
-        "Be part of our thanksgiving and love feast on the 14th and 25th of December respectively. Let's celebrate God's goodness together.",
-      link: "/more/blog/outreach-program",
+        "Join us for a joyous Easter feast celebration on the 3rd - 5th of April. Let's celebrate the resurrection of our Lord together.",
     },
+    {
+      title: "Women's Conference",
+      excerpt: "On the 16th and 17th of May, all women are invited to a powerful conference filled with worship, word and fellowship.",
+    },
+    {
+      title: "Choir Night of Kingdom Praise",
+      excerpt:
+        "Experience a night of powerful worship and praise with our choir on the 29th to 31st of May. Let's lift our voices together.",
+    },
+    {
+      title: "Ministers' Conference",
+      excerpt:
+        "All ministers are invited to a transformative conference on the 17th to 19th of June. Let's grow in the knowledge of God together.",
+    },
+    {
+      title: "Mid Year Fasting and Prayer",
+      excerpt:
+        "Join us for our mid-year fasting and prayer sessions from the 1st to 12th of July. Let's seek God's face together.",
+    },
+    {
+      title: "Men's Anniversary",
+      excerpt: "Celebrating the gift of men on the 17th to 19th of July. Join us for a powerful time of fellowship and God's presence.",
+    },
+    {
+      title: "Couple's Praise Night",
+      excerpt: "Couples, join us for a night of praise and worship on the 14th of September. Let's celebrate love and God's faithfulness together.",
+    },
+    {
+      title: "Innsbruck City Praise 2026",
+      excerpt: "Join us for a powerful time of worship and praise in the city of Innsbruck on the 17th of October. Let's lift our voices together.",
+    },
+    {
+      title: "Summer Go Fishing",
+      excerpt: "Join us for our street outreach on every Saturday in Summer. Let's go fishing for souls together.",
+    },
+    {
+      title: "Last Revival of the Year",
+      excerpt: "Experience a powerful revival with us from the 15th to 27th of November. Let's encounter God together.",
+    },
+    {
+      title: "Annual Thanksgiving",
+      excerpt: "Join us for our annual thanksgiving service on the 20th of December. Let's give thanks to God together.",
+    },
+    {
+      title: "Love Feast",
+      excerpt: "Celebrate the love of God with us on the 25th of December. Join us for a joyous feast and fellowship.",
+    },
+    {
+      title: "Cross Over Service",
+      excerpt: "Join us for a powerful cross over service on the 31st of December. Let's welcome the new year with God's presence.",
+    }
     // Add more announcements as needed
   ];
 
