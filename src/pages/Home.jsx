@@ -9,7 +9,6 @@ import {
   Papa,
   Mama,
   Asst,
-  Daughter,
   PapaA,
   AsstP,
   Together1,
@@ -88,11 +87,6 @@ const Home = () => {
   ];
 
   const announcements = [
-    // {
-    //   title: "Fasting and Prayer",
-    //   excerpt:
-    //     "Join us for our 40 days fasting and prayer sessions from 1st January to 9th February. Let's seek God's face together.",
-    // },
     {
       title: "Power Packed Revival",
       excerpt:
