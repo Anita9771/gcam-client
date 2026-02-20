@@ -5,7 +5,7 @@ const Testimonies = () => {
   const [name, setName] = useState("");
   const [testimony, setTestimony] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [testimonies, setTestimonies] = useState([]);
+  const [, setTestimonies] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,17 +86,6 @@ const Testimonies = () => {
         )}
       </div>
 
-      {/* <div className="max-w-5xl mx-auto space-y-8">
-        <h2 className="text-3xl font-bold text-center mb-6">
-          Recent Testimonies
-        </h2>
-        {testimonies.map((t, i) => (
-          <div key={i} className="bg-[#FFF5E1]/10 p-6 rounded-lg shadow-sm">
-            <p className="italic mb-2">"{t.message}"</p>
-            <p className="text-sm text-right text-[#FFF5E1]/80">– {t.name || "Anonymous"}</p>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };

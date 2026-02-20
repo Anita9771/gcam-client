@@ -22,7 +22,7 @@ const CreateProfile = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
