@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../context/api";
 
 const ResetPassword = () => {
-  const { token } = useParams();
   const navigate = useNavigate();
 
   const [newPassword, setNewPassword] = useState("");

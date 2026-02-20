@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Awaken, AwakenImg} from "../../images"
+import {AwakenImg} from "../../images"
 
 const Awakening = () => {
   return (

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import API from "../context/api";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
 
   // const handleSubscribe = async (e) => {
   //   e.preventDefault();
@@ -36,7 +34,7 @@ const Footer = () => {
               community. Join us as we grow together in Christ's love.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-[#B0A8B9] transition-colors">
+              <p className="hover:text-[#B0A8B9] transition-colors">
                 <span className="sr-only">Facebook</span>
                 <svg
                   className="h-6 w-6"
@@ -49,7 +47,7 @@ const Footer = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </p>
             </div>
           </div>
 

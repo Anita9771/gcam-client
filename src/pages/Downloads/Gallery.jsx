@@ -5,8 +5,6 @@ import {
   Together3,
   Image1,
   Image2,
-  Image3,
-  Image4,
   Image5,
   Image7,
   Image8,

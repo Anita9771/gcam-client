@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import { PrivateRoute, Navbar, Footer, ForgotPassword, ResetPassword,PrivateAdminRoute } from "./components";
+import { Navbar, Footer, ForgotPassword, ResetPassword,PrivateAdminRoute } from "./components";
 import {
   Home,
   Partnership,
