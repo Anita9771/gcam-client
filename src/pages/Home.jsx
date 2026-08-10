@@ -231,7 +231,7 @@ const Home = () => {
               Upcoming: Innsbruck Spiritual Awakening
             </h3>
             <p className="mb-4">
-              Date: Sep 13th, 2025 | Time: 9:00 AM - 4:00 PM
+              Date: Aug 15th, 2026 | Time: 12:00 noon - 6:00 PM
             </p>
             <p className="mb-4">
               Join us for a powerful time in God's presence featuring worship,
@@ -244,7 +244,7 @@ const Home = () => {
               Register Now
             </Link>
           </div>
-          <div>
+          {/* <div>
             <h3 className="text-2xl font-bold mb-2">
               Upcoming: Innsbruck City Praise
             </h3>
@@ -258,7 +258,7 @@ const Home = () => {
             >
               Register Now
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 

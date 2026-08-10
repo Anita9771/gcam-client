@@ -37,7 +37,7 @@ const Contact = () => {
 
         <div className="py-2">
           <address className="not-italic text-[#f5e4ce]">
-            <p className="mb-2">Kaplanstrasse 2, Top 1, </p>
+            <p className="mb-2">Bundesstrabe 29, 1 Stock, </p>
             <p className="mb-2">6063 Neu-Rum, Austria.</p>
             <p className="mb-2">Phone: (+43) 699 11084419</p>
             <p className="mb-2">Email: gloriouschristambassador@gmail.com</p>

@@ -47,7 +47,7 @@ const GiveNow = () => {
         <address className="not-italic text-[#FFF5E1]/90">
           Glorious Christ Ambassadors Ministries
           <br />
-          Kaplanstrasse 2, Top 1,
+          Bundesstrabe 29, 1 Stock,
           <br />
           6063 Neu-Rum, Austria.
           <br />

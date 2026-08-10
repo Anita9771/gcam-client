@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-
   // const handleSubscribe = async (e) => {
   //   e.preventDefault();
   //   try {
@@ -88,7 +87,7 @@ const Footer = () => {
               Contact Us
             </h3>
             <address className="not-italic text-[#f5e4ce]">
-              <p className="mb-2">Kaplanstrasse 2, Top 1, </p>
+              <p className="mb-2">Bundesstrabe 29, 1 Stock, </p>
               <p className="mb-2">6063 Neu-Rum, Austria.</p>
               <p className="mb-2">Phone: (+43) 699 11084419</p>
               <p className="mb-2">gloriouschristambassador@gmail.com</p>
@@ -111,7 +110,9 @@ const Footer = () => {
                 <span>Tue 7:00 PM</span>
               </li>
               <li className="flex justify-between">
-                <span>Night Vigil <br/> (Every First, Second and Third Friday):</span>
+                <span>
+                  Night Vigil <br /> (Every First, Second and Third Friday):
+                </span>
                 <span>Fri 10:00 PM</span>
               </li>
             </ul>
